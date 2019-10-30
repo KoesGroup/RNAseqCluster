@@ -1,0 +1,11 @@
+sample	genotype
+AN1-1	AN1
+AN1-2	AN1
+PH3-16	PH3
+PH3-18	PH3
+PH4-13	PH4
+PH4-14	PH4
+WT12	wt
+WT15	wt
+WT17	wt
+WT	wt
