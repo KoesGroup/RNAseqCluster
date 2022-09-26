@@ -37,7 +37,7 @@ normalize <- function(countdata, samplefile, f, p){
         d <- paste(i, levels(condition)[j], sep="&")                                                # paste the two conditions in one character, to be used as the pair name
         res$genenames <- rownames(res)
         resul <- as.data.frame(res)
-        goede <- resul %>% filter(padj<p & (log2FoldChange>f | log2FoldChange<(-1*f)) )
+        goede <- resul %>% filter(!is.na(padj) & padj<p & (log2FoldChange>f | log2FoldChange<(-1*f)) )
         selec <- as.list(goede$genenames)
         total_selec <- append(total_selec, selec)
         print(length(selec))# get number of DE values with P-value < 0.05
