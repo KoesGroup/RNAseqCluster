@@ -2,7 +2,7 @@ normalize <- function(countdata, samplefile, f, p){
   col.names = colnames(samplefile)                                                # extract all column names
   columns.to.discard = c("sample","fq1","fq2","fq")                                    # column we don't need to extract all conditions
   colsForConditions = col.names[! col.names %in% columns.to.discard]              # only keeping the column of interest
-    # one condition
+  # one condition
   if (length(colsForConditions) == 1){
     condition <- factor(samplefile[,colsForConditions])
     # two conditions
@@ -69,24 +69,24 @@ normalize <- function(countdata, samplefile, f, p){
   }
   mydat <- as.matrix(mydat)  
   
-
-#  samples$gene <- row.names(samples)
-#  ConSam <- dcast(samples, condition ~ gene)
-#  ConSam <- as.data.frame(list(split(apply(ConSam, 1, function(x) unname(x[!is.na(x)])), 1:nrow(ConSam))),, row.names = 1)
   
-#  ConSam <- as.matrix(ConSam)
-#  scaledata <- t(scale(t(selection))) # Centers and scales data.
-#  scaledata <- scaledata[complete.cases(scaledata),]
-#  scaledata1 <- as.data.frame(scaledata)
-#  mydat <- data.frame(row.names = rownames(scaledata))
-#  
-#  for(i in rownames(ConSam)){
-#    l <- ConSam[i,]
-#    l <- as.vector(l)
-#    names(l) <- NULL
-#    mydat[i] <- (rowMeans(as.data.frame(scaledata1[unlist(c(l))])))
-#  }
-#  mydat <- as.matrix(mydat)
+  #  samples$gene <- row.names(samples)
+  #  ConSam <- dcast(samples, condition ~ gene)
+  #  ConSam <- as.data.frame(list(split(apply(ConSam, 1, function(x) unname(x[!is.na(x)])), 1:nrow(ConSam))),, row.names = 1)
+  
+  #  ConSam <- as.matrix(ConSam)
+  #  scaledata <- t(scale(t(selection))) # Centers and scales data.
+  #  scaledata <- scaledata[complete.cases(scaledata),]
+  #  scaledata1 <- as.data.frame(scaledata)
+  #  mydat <- data.frame(row.names = rownames(scaledata))
+  #  
+  #  for(i in rownames(ConSam)){
+  #    l <- ConSam[i,]
+  #    l <- as.vector(l)
+  #    names(l) <- NULL
+  #    mydat[i] <- (rowMeans(as.data.frame(scaledata1[unlist(c(l))])))
+  #  }
+  #  mydat <- as.matrix(mydat)
   
   
   

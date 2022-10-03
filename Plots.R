@@ -44,3 +44,32 @@ outPut$ST <- StCountsLong
 
 return(outPut)
 }
+
+
+exampleFeatureCounts <- function(){
+  
+  x <- data.frame("geneID"=c("gene1","gene2","gene3","gene4","gene5"),"Chr"=c("Chr1","Chr1","Chr1","Chr2","Chr2"),	
+      "Start"=c("6860", "7678", "11192","0455", "1862"), "End"=c("7165","8121","9790", "1153","2567"),
+      "Strand"=c("+","+","-","-","+"),	"Length"=c("269","444","536","699","706"),
+    "sample1" = c("21","0","150", "12","0"),"sample2" = c("22","0","105","15","0"),"sample3" = c("31","1","165", "18","0"),"sample4" = c("2","0","83", "9","0"))
+ 
+  return(x)
+}
+
+exampleProcessedCounts <- function(){
+  
+  x <- data.frame("geneTD"=c("gene1","gene2","gene3","gene4","gene5"),
+                  "sample1" = c("21","0","150", "12","0"),"sample2" = c("22","0","105","15","0"),"sample3" = c("31","1","165", "18","0"),"sample4" = c("2","0","83", "9","0"))
+  
+  return(x)
+}
+
+exampleSample <- function(){
+  
+  x <- data.frame("sample"=c("sample1","sample2","sample3","sample4"),
+                  "genotype" = c("wt","wt","mutant","mutant"),"condition" = c("control","treated","control","treated"))
+  
+  return(x)
+}
+
+

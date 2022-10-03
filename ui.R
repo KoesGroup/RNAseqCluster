@@ -22,7 +22,38 @@ ui <- fluidPage(theme = shinytheme("darkly"),
                   mainPanel(
                     tabsetPanel(
                       tabPanel("introduction",  
-                               htmlOutput("intro")
+                               fluidRow( 
+                               
+                               column(12,
+                                      
+                               htmlOutput("intro1")
+                               ),
+                               column(12,
+                                      wellPanel(
+                                        htmlOutput("intro2"),
+                                        tableOutput("counts1") 
+                               )),
+                               column(12,
+                                      htmlOutput("tab1")
+                               ),
+                               column(9,
+                                      wellPanel(
+                                        tableOutput("counts2")
+                               )),
+                               column(12,
+                                      
+                                      htmlOutput("tab2")
+                               ),
+                               column(6,
+                                      wellPanel(
+                                        tableOutput("sample") 
+                               )),
+                               column(12,
+                                      htmlOutput("intro3")
+                                      
+                              )
+                               
+                           )
                         ), 
                       tabPanel("Input",
                         fluidRow(
@@ -206,15 +237,19 @@ ui <- fluidPage(theme = shinytheme("darkly"),
                                plotOutput(outputId = "heatmap2"),
                                br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),br(),
                                plotOutput(outputId = "cluCen")
-                               
-                               
                            )
                          )     
                        ),
-                      tabPanel("individual clusters",
+                      tabPanel("individual clusters",                          
+                             fluidRow(
+                              column(4,
+                               br(),
                                selectInput('cluster', 'cluster', ""),
                                actionButton("sinClus", "submit",
-                                            style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+                                            style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
+                              ),
+
+                              column(12,
                                h4(htmlOutput("text11")),
                                plotOutput(outputId = "heatmap3"),
                                br(),
@@ -224,24 +259,37 @@ ui <- fluidPage(theme = shinytheme("darkly"),
                                dataTableOutput("clusTab"),
                                br(),
                                br()
+                              ))
                       ),
                       tabPanel("individual genes",
                           fluidRow(
-                              column(5, 
+                              column(4, 
                                      br(),
-                                     textAreaInput('gene', 'Input gene name(s) separated by comma:', value = "", placeholder = 'e.g. ENSMUSG00000000028,ENSMUSG00000000001')),
-                              column(2,
+                                     textAreaInput('gene', 'Input gene name(s) separated by comma:', value = "", placeholder = 'e.g. ENSMUSG00000000028,ENSMUSG00000000001')
+                              ),
+                              column(1,
                                      br(),
                                      br(),
                                      actionButton("do", "submit",style="color: #fff; background-color: #337ab7; border-color: #2e6da4; height:70px")
-                               ),
-                               column(12,
+                              ),
+                              column(5,
+                                     br(),
+                                     htmlOutput("text16")
+                                     
+                              ),       
+                              column(2,      
+                                     br(),
+                                     downloadButton('download',HTML("Download"),
+                                                    style="color: #0a0800; background-color: #f7c00a; border-color: #fadb73; padding-top: 30px; height:90px; width:130px")  
+                              ),
+                              column(12,
                                       h4(htmlOutput("text14")),
                                       plotOutput("plot1"),
-                                      br(),
+                                      br(),    
                                       br(),
                                       h4(htmlOutput("text15")),
                                       plotOutput("plot2")
+                             
                                  
                           )
                         )

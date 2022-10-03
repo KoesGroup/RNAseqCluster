@@ -6,8 +6,20 @@ server <- function(input, output, session) {
   
   source("introduction.R")
   source("Plots.R")
-  output$intro <- renderText(introductie())
-  
+  output$intro1 <- renderText(introductie1())
+  output$intro2 <- renderText(introductie2())
+  output$counts1 <- renderTable(
+    exampleFeatureCounts()
+  ) 
+  output$tab1 <- renderText(header1())
+  output$counts2 <- renderTable(
+    exampleProcessedCounts()
+  )
+  output$tab2 <- renderText(header2())
+  output$sample <- renderTable(
+    exampleSample()
+  )
+  output$intro3 <- renderText(introductie3())
 output$text1 <- renderText(
   {"select a featureCounts raw counts file and press the <font color=\"#2da5fa\">blue</font> submit."})
 output$text3 <- renderText(
@@ -325,7 +337,10 @@ env3 <- observeEvent(input$goNorm,{      # submit to start normalisation
       step = 4
     rv$method <- input$ClusMet
     output$text11 <- renderText("Choose cluster number you are interested in."
-  )
+       )
+    output$text16 <- renderText("<center>The list containing the differentially expressed genes and the cluster number they have been assigned to can be downloaded by pressing the <font color=\"#f7c00a\"><b>download</b></font> button.</center>"
+       )
+    
        if(rv$method == "hierarchical"){
           output$text5 <- renderText({paste("Clustering has been performed using", rv$method, " with ", input$selectH, "clusters" )})
           rv$clusts = cutree(rv$hr, k=input$selectH)
@@ -837,4 +852,11 @@ env3 <- observeEvent(input$goNorm,{      # submit to start normalisation
   output$plot2 <- renderPlot({
     print(p2())
   })
+  thedata <- reactive(merge(as.data.frame(rv$select), as.data.frame(rv$clusts), by="row.names", sort=FALSE))
+  output$download <- downloadHandler(
+    filename = function(){"DE_genes.csv"}, 
+    content = function(fname){
+      write.csv(thedata(), fname)
+    }
+  )
 }
